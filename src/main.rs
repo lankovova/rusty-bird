@@ -138,11 +138,6 @@ async fn main() {
 
         pipes_pool.retain(|pipe| !pipe.is_gone());
 
-        clear_background(Color::new(0.0, 0.5, 0.5, 1.0));
-
-        let fps_counter_str = format!("FPS {}", get_fps());
-        draw_text(fps_counter_str, screen_width() - 120.0, 20.0, 30.0, BLACK);
-
         if current_time - last_time_pipe_spawned > 6.0 {
             last_time_pipe_spawned = current_time;
 
@@ -166,6 +161,11 @@ async fn main() {
 
             accumulator -= FIXED_DT;
         }
+
+        clear_background(Color::new(0.0, 0.5, 0.5, 1.0));
+
+        let fps_counter_str = format!("FPS {}", get_fps());
+        draw_text(fps_counter_str, screen_width() - 120.0, 20.0, 30.0, BLACK);
 
         bird.draw();
         pipes_pool.iter_mut().for_each(|pipe| {
