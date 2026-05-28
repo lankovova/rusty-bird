@@ -55,6 +55,7 @@ async fn main() {
         }
 
         for pipe in &pipes_pool {
+            // FIXME: Could optimize by checking collision only with the closest pipe
             if bird.is_colliding_with_pipe(pipe) {
                 game_over = true;
             }
