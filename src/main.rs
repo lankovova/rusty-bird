@@ -67,9 +67,6 @@ async fn main() {
 
         clear_background(Color::new(0.0, 0.5, 0.5, 1.0));
 
-        let fps_counter_str = format!("FPS {}", get_fps());
-        draw_text(fps_counter_str, screen_width() - 120.0, 20.0, 30.0, BLACK);
-
         bird.draw();
         pipes_pool.iter_mut().for_each(|pipe| pipe.draw());
 
@@ -83,6 +80,9 @@ async fn main() {
                 BLACK,
             );
         }
+
+        let fps_counter_str = format!("FPS {}", get_fps());
+        draw_text(fps_counter_str, screen_width() - 120.0, 20.0, 30.0, BLACK);
 
         prev_time = current_time;
 
