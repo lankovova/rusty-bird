@@ -20,6 +20,8 @@ async fn main() {
     let mut accumulator = 0.0;
     let mut prev_time = 0.0;
 
+    // Skip first frame because screen dimensions are wrong on the first pass
+    // probably because of auto resize that happens when user uses WM
     next_frame().await;
 
     loop {
