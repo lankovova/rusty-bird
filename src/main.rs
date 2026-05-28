@@ -1,117 +1,9 @@
+mod bird;
+mod pipe;
+
+use crate::bird::Bird;
+use crate::pipe::Pipe;
 use macroquad::prelude::*;
-
-struct Point {
-    x: f32,
-    y: f32,
-}
-
-const GRAVITY: f32 = 0.05;
-
-struct Bird {
-    pos: Point,
-    radius: f32,
-    velocity: f32,
-}
-
-impl Bird {
-    fn new() -> Self {
-        Self {
-            pos: Point { x: 300.0, y: 200.0 },
-            velocity: 0.0,
-            radius: 20.0,
-        }
-    }
-
-    fn flap(&mut self) {
-        self.velocity = -4.0;
-    }
-
-    fn update(&mut self) {
-        self.velocity += GRAVITY;
-        self.pos.y += self.velocity;
-    }
-
-    fn draw(&self) {
-        draw_circle(self.pos.x, self.pos.y, self.radius, YELLOW);
-    }
-
-    // TODO: Do proper collision
-    // rn treating bird as a square
-    fn is_colliding_with_pipe(&self, pipe: &Pipe) -> bool {
-        let leftmost = self.pos.x;
-        let rightmost = self.pos.x + self.radius * 2.0;
-
-        if leftmost < pipe.x || rightmost > pipe.x + pipe.width {
-            return false;
-        }
-
-        let topmost = self.pos.y;
-        let bottommost = self.pos.y + self.radius * 2.0;
-
-        if topmost > pipe.gap_start_y && bottommost < pipe.gap_start_y + pipe.gap_size {
-            return false;
-        }
-
-        return true;
-    }
-
-    fn is_off_screen(&self) -> bool {
-        let topmost = self.pos.y;
-        let bottommost = self.pos.y + self.radius * 2.0;
-
-        if topmost < 0.0 || bottommost > screen_height() {
-            return true;
-        }
-
-        let leftmost = self.pos.x;
-        let rightmost = self.pos.x + self.radius * 2.0;
-
-        if leftmost < 0.0 || rightmost > screen_width() {
-            return true;
-        }
-
-        return false;
-    }
-}
-
-#[derive(Debug)]
-struct Pipe {
-    x: f32,
-    width: f32,
-    gap_start_y: f32,
-    gap_size: f32,
-}
-
-impl Pipe {
-    fn new() -> Self {
-        Self {
-            x: screen_width(),
-            width: 150.0,
-            gap_start_y: 400.0,
-            gap_size: 300.0,
-        }
-    }
-
-    fn update(&mut self) {
-        self.x -= 1.5;
-    }
-
-    fn is_gone(&self) -> bool {
-        self.x < -self.width
-    }
-
-    fn draw(&self) {
-        draw_rectangle(self.x, 0.0, self.width, self.gap_start_y, GREEN);
-
-        draw_rectangle(
-            self.x,
-            self.gap_start_y + self.gap_size,
-            self.width,
-            screen_height() - self.gap_start_y,
-            GREEN,
-        );
-    }
-}
 
 // draw_line(40.0, 40.0, 100.0, 200.0, 15.0, BLUE);
 // draw_rectangle(screen_width() / 2.0 - 60.0, 100.0, 120.0, 60.0, GREEN);
@@ -162,6 +54,16 @@ async fn main() {
             accumulator -= FIXED_DT;
         }
 
+        for pipe in &pipes_pool {
+            if bird.is_colliding_with_pipe(pipe) {
+                game_over = true;
+            }
+        }
+
+        if bird.is_off_screen() {
+            game_over = true;
+        }
+
         clear_background(Color::new(0.0, 0.5, 0.5, 1.0));
 
         let fps_counter_str = format!("FPS {}", get_fps());
@@ -181,16 +83,6 @@ async fn main() {
                 60.0,
                 BLACK,
             );
-        }
-
-        for pipe in &pipes_pool {
-            if bird.is_colliding_with_pipe(pipe) {
-                game_over = true;
-            }
-        }
-
-        if bird.is_off_screen() {
-            game_over = true;
         }
 
         prev_time = current_time;
