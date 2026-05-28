@@ -49,9 +49,7 @@ async fn main() {
         // FIXME: Feels like shit, wasted renders with no changes
         while accumulator >= FIXED_DT {
             bird.update();
-            pipes_pool.iter_mut().for_each(|pipe| {
-                pipe.update();
-            });
+            pipes_pool.iter_mut().for_each(|pipe| pipe.update());
 
             accumulator -= FIXED_DT;
         }
@@ -72,9 +70,7 @@ async fn main() {
         draw_text(fps_counter_str, screen_width() - 120.0, 20.0, 30.0, BLACK);
 
         bird.draw();
-        pipes_pool.iter_mut().for_each(|pipe| {
-            pipe.draw();
-        });
+        pipes_pool.iter_mut().for_each(|pipe| pipe.draw());
 
         // TODO: Stop physics on game over
         if game_over {
