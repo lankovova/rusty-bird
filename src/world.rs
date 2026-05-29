@@ -55,7 +55,13 @@ impl World {
     }
 
     fn spawn_pipe(&mut self) {
-        let new_pipe = Pipe::new(self.next_pipe_id);
+        let new_pipe = Pipe {
+            id: self.next_pipe_id,
+            x: screen_width(),
+            width: 150.0,
+            gap_start_y: 400.0,
+            gap_size: 300.0,
+        };
 
         debug!(
             "{} pipe #{} spawned at x={}",

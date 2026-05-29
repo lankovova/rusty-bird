@@ -13,6 +13,7 @@ impl Renderer {
         Renderer::render_bird(&world.bird, &prev_world.bird, alpha);
 
         world.pipes.iter().for_each(|pipe| {
+            // FIXME: Could be optimized because pipes have uniq ids and they are sorted in the vec
             let prev_pipe = prev_world
                 .pipes
                 .iter()

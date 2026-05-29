@@ -10,16 +10,6 @@ pub struct Pipe {
 }
 
 impl Pipe {
-    pub fn new(id: u32) -> Self {
-        Self {
-            id,
-            x: screen_width(),
-            width: 150.0,
-            gap_start_y: 400.0,
-            gap_size: 300.0,
-        }
-    }
-
     pub fn update(&mut self) {
         self.x -= 3.0;
     }
