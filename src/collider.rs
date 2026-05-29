@@ -3,19 +3,24 @@ use crate::{bird::Bird, pipe::Pipe};
 // TODO: Do proper collision
 // rn treating bird as a square
 pub fn collide(bird: &Bird, pipe: &Pipe) -> bool {
-    let leftmost = bird.pos.x;
-    let rightmost = bird.pos.x + bird.radius * 2.0;
+    let r = bird.radius;
 
-    if leftmost < pipe.x || rightmost > pipe.x + pipe.width {
+    let left = bird.pos.x - r;
+    let right = bird.pos.x + r;
+    let top = bird.pos.y - r;
+    let bottom = bird.pos.y + r;
+
+    // outside pipe horizontally → no collision
+    if right < pipe.x || left > pipe.x + pipe.width {
         return false;
     }
 
-    let topmost = bird.pos.y;
-    let bottommost = bird.pos.y + bird.radius * 2.0;
+    // inside gap → no collision
+    let in_gap = bottom < pipe.gap_start_y + pipe.gap_size && top > pipe.gap_start_y;
 
-    if topmost > pipe.gap_start_y && bottommost < pipe.gap_start_y + pipe.gap_size {
+    if in_gap {
         return false;
     }
 
-    return true;
+    true
 }

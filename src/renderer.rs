@@ -17,7 +17,7 @@ impl Renderer {
             .iter()
             .for_each(|pipe| Renderer::render_pipe(pipe));
 
-        // TODO: Stop physics on game over
+        // FIXME: Stop physics on game over
         if world.game_over {
             draw_text(
                 "You ded",
