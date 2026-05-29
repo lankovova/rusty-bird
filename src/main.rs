@@ -9,7 +9,7 @@ use macroquad::prelude::*;
 // draw_rectangle(screen_width() / 2.0 - 60.0, 100.0, 120.0, 60.0, GREEN);
 // draw_text("IT WORKS!", 20.0, 20.0, 30.0, DARKGRAY);
 
-const FIXED_DT: f64 = 1.0 / 60.0;
+const FIXED_DT: f32 = 1.0 / 60.0;
 
 #[macroquad::main("BasicShapes")]
 async fn main() {
@@ -18,7 +18,6 @@ async fn main() {
     let mut last_time_pipe_spawned = -100.0;
     let mut game_over = false;
     let mut accumulator = 0.0;
-    let mut prev_time = 0.0;
 
     // Skip first frame because screen dimensions are wrong on the first pass
     // probably because of auto resize that happens when user uses WM
@@ -26,7 +25,7 @@ async fn main() {
 
     loop {
         let current_time = get_time();
-        let dt = current_time - prev_time;
+        let dt = get_frame_time();
 
         accumulator += dt;
 
@@ -83,8 +82,6 @@ async fn main() {
 
         let fps_counter_str = format!("FPS {}", get_fps());
         draw_text(fps_counter_str, screen_width() - 120.0, 20.0, 30.0, BLACK);
-
-        prev_time = current_time;
 
         next_frame().await
     }
