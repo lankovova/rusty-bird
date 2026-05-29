@@ -7,6 +7,7 @@ pub struct World {
     pub pipes: Vec<Pipe>,
     pub game_over: bool,
     last_time_pipe_spawned: f32,
+    next_pipe_id: u32,
 }
 
 impl World {
@@ -16,6 +17,7 @@ impl World {
             pipes: vec![],
             game_over: false,
             last_time_pipe_spawned: -100.0,
+            next_pipe_id: 0,
         }
     }
 
@@ -53,8 +55,16 @@ impl World {
     }
 
     fn spawn_pipe(&mut self) {
-        let new_pipe = Pipe::new();
-        debug!("{} pipe spawned at x={}", get_time(), new_pipe.x);
+        let new_pipe = Pipe::new(self.next_pipe_id);
+
+        debug!(
+            "{} pipe #{} spawned at x={}",
+            get_time(),
+            new_pipe.id,
+            new_pipe.x
+        );
+
+        self.next_pipe_id += 1;
         self.pipes.push(new_pipe);
     }
 }

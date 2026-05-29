@@ -2,6 +2,7 @@ use macroquad::prelude::*;
 
 #[derive(Debug, Clone)]
 pub struct Pipe {
+    pub id: u32,
     pub x: f32,
     pub width: f32,
     pub gap_start_y: f32,
@@ -9,8 +10,9 @@ pub struct Pipe {
 }
 
 impl Pipe {
-    pub fn new() -> Self {
+    pub fn new(id: u32) -> Self {
         Self {
+            id,
             x: screen_width(),
             width: 150.0,
             gap_start_y: 400.0,

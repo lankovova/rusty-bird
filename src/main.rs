@@ -14,7 +14,7 @@ use world::World;
 
 const FIXED_DT: f32 = 1.0 / 60.0;
 
-#[macroquad::main("BasicShapes")]
+#[macroquad::main("Rusty Bird")]
 async fn main() {
     let mut world = World::new();
     let mut prev_world: World = world.clone();

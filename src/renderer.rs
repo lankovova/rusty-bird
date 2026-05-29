@@ -12,10 +12,15 @@ impl Renderer {
 
         Renderer::render_bird(&world.bird, &prev_world.bird, alpha);
 
-        world
-            .pipes
-            .iter()
-            .for_each(|pipe| Renderer::render_pipe(pipe));
+        world.pipes.iter().for_each(|pipe| {
+            let prev_pipe = prev_world
+                .pipes
+                .iter()
+                .find(|p| p.id == pipe.id)
+                .unwrap_or(pipe);
+
+            Renderer::render_pipe(pipe, prev_pipe, alpha);
+        });
 
         // FIXME: Stop physics on game over
         if world.game_over {
@@ -33,15 +38,17 @@ impl Renderer {
     }
 
     pub fn render_bird(bird: &Bird, prev_bird: &Bird, alpha: f32) {
-        let y = prev_bird.pos.y + (bird.pos.y - prev_bird.pos.y) * alpha;
+        let y = prev_bird.pos.y.lerp(bird.pos.y, alpha);
         draw_circle(bird.pos.x, y, bird.radius, YELLOW);
     }
 
-    pub fn render_pipe(pipe: &Pipe) {
-        draw_rectangle(pipe.x, 0.0, pipe.width, pipe.gap_start_y, GREEN);
+    pub fn render_pipe(pipe: &Pipe, prev_pipe: &Pipe, alpha: f32) {
+        let x = prev_pipe.x.lerp(pipe.x, alpha);
+
+        draw_rectangle(x, 0.0, pipe.width, pipe.gap_start_y, GREEN);
 
         draw_rectangle(
-            pipe.x,
+            x,
             pipe.gap_start_y + pipe.gap_size,
             pipe.width,
             screen_height() - pipe.gap_start_y,
