@@ -17,6 +17,7 @@ const FIXED_DT: f32 = 1.0 / 60.0;
 #[macroquad::main("BasicShapes")]
 async fn main() {
     let mut world = World::new();
+    let mut prev_world: World = world.clone();
     let mut accumulator = 0.0;
     let mut current_time = 0.0;
 
@@ -31,14 +32,16 @@ async fn main() {
 
         world.process(current_time);
 
-        // Unties physics from FPS
-        // FIXME: Feels like shit, wasted renders with no changes
         while accumulator >= FIXED_DT {
+            prev_world = world.clone();
+
             world.update();
             accumulator -= FIXED_DT;
         }
 
-        Renderer::render_world(&world);
+        let alpha = accumulator / FIXED_DT;
+
+        Renderer::render_world(&world, &prev_world, alpha);
 
         next_frame().await
     }

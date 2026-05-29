@@ -2,11 +2,13 @@ use macroquad::prelude::*;
 
 const GRAVITY: f32 = 0.2;
 
+#[derive(Clone)]
 pub struct Point {
     pub x: f32,
     pub y: f32,
 }
 
+#[derive(Clone)]
 pub struct Bird {
     pub pos: Point,
     pub radius: f32,

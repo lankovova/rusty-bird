@@ -7,10 +7,10 @@ use crate::world::World;
 pub struct Renderer;
 
 impl Renderer {
-    pub fn render_world(world: &World) {
+    pub fn render_world(world: &World, prev_world: &World, alpha: f32) {
         clear_background(Color::new(0.0, 0.5, 0.5, 1.0));
 
-        Renderer::render_bird(&world.bird);
+        Renderer::render_bird(&world.bird, &prev_world.bird, alpha);
 
         world
             .pipes
@@ -32,8 +32,9 @@ impl Renderer {
         draw_text(fps_counter_str, screen_width() - 120.0, 20.0, 30.0, BLACK);
     }
 
-    pub fn render_bird(bird: &Bird) {
-        draw_circle(bird.pos.x, bird.pos.y, bird.radius, YELLOW);
+    pub fn render_bird(bird: &Bird, prev_bird: &Bird, alpha: f32) {
+        let y = prev_bird.pos.y + (bird.pos.y - prev_bird.pos.y) * alpha;
+        draw_circle(bird.pos.x, y, bird.radius, YELLOW);
     }
 
     pub fn render_pipe(pipe: &Pipe) {

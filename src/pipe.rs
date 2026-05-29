@@ -1,6 +1,6 @@
 use macroquad::prelude::*;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Pipe {
     pub x: f32,
     pub width: f32,

@@ -1,6 +1,7 @@
 use crate::{bird::Bird, collider, pipe::Pipe};
 use macroquad::prelude::*;
 
+#[derive(Clone)]
 pub struct World {
     pub bird: Bird,
     pub pipes: Vec<Pipe>,
