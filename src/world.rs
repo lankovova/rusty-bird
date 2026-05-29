@@ -12,8 +12,15 @@ pub struct World {
 
 impl World {
     pub fn new() -> Self {
+        let bird = Bird {
+            x: 300.0,
+            y: 200.0,
+            velocity: 0.0,
+            radius: 20.0,
+        };
+
         Self {
-            bird: Bird::new(),
+            bird,
             pipes: vec![],
             game_over: false,
             last_time_pipe_spawned: -100.0,

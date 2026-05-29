@@ -7,19 +7,10 @@ pub struct Bird {
     pub x: f32,
     pub y: f32,
     pub radius: f32,
-    velocity: f32,
+    pub velocity: f32,
 }
 
 impl Bird {
-    pub fn new() -> Self {
-        Self {
-            x: 300.0,
-            y: 200.0,
-            velocity: 0.0,
-            radius: 20.0,
-        }
-    }
-
     pub fn flap(&mut self) {
         self.velocity = -8.0;
     }
