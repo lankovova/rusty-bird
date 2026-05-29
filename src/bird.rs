@@ -1,4 +1,3 @@
-use crate::Pipe;
 use macroquad::prelude::*;
 
 const GRAVITY: f32 = 0.05;
@@ -30,26 +29,6 @@ impl Bird {
     pub fn update(&mut self) {
         self.velocity += GRAVITY;
         self.pos.y += self.velocity;
-    }
-
-    // TODO: Do proper collision
-    // rn treating bird as a square
-    pub fn is_colliding_with_pipe(&self, pipe: &Pipe) -> bool {
-        let leftmost = self.pos.x;
-        let rightmost = self.pos.x + self.radius * 2.0;
-
-        if leftmost < pipe.x || rightmost > pipe.x + pipe.width {
-            return false;
-        }
-
-        let topmost = self.pos.y;
-        let bottommost = self.pos.y + self.radius * 2.0;
-
-        if topmost > pipe.gap_start_y && bottommost < pipe.gap_start_y + pipe.gap_size {
-            return false;
-        }
-
-        return true;
     }
 
     pub fn is_off_screen(&self) -> bool {
