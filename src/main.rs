@@ -18,14 +18,15 @@ async fn main() {
     let mut last_time_pipe_spawned = -100.0;
     let mut game_over = false;
     let mut accumulator = 0.0;
+    let mut current_time: f32 = 0.0;
 
     // Skip first frame because screen dimensions are wrong on the first pass
     // probably because of auto resize that happens when user uses WM
     next_frame().await;
 
     loop {
-        let current_time = get_time();
         let dt = get_frame_time();
+        current_time += dt;
 
         accumulator += dt;
 
