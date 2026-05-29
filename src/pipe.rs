@@ -19,7 +19,7 @@ impl Pipe {
     }
 
     pub fn update(&mut self) {
-        self.x -= 1.5;
+        self.x -= 3.0;
     }
 
     pub fn is_gone(&self) -> bool {

@@ -22,7 +22,7 @@ impl Renderer {
             draw_text(
                 "You ded",
                 screen_width() / 2.0 - 120.0,
-                screen_height() / 2.0 - 100.0,
+                screen_height() / 2.0,
                 60.0,
                 BLACK,
             );

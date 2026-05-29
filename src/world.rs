@@ -21,7 +21,7 @@ impl World {
     pub fn process(&mut self, current_time: f32) {
         self.pipes.retain(|pipe| !pipe.is_gone());
 
-        if current_time - self.last_time_pipe_spawned > 6.0 {
+        if current_time - self.last_time_pipe_spawned > 3.0 {
             self.last_time_pipe_spawned = current_time;
             self.spawn_pipe();
         }
