@@ -53,8 +53,7 @@ impl World {
 
     fn spawn_pipe(&mut self) {
         let new_pipe = Pipe::new();
-        println!("pipe spawned at {}, {:?}", get_time(), new_pipe);
-
+        debug!("{} pipe spawned at x={}", get_time(), new_pipe.x);
         self.pipes.push(new_pipe);
     }
 }
