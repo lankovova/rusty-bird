@@ -40,6 +40,7 @@ impl Renderer {
 
     pub fn render_bird(bird: &Bird, prev_bird: &Bird, alpha: f32) {
         let y = prev_bird.y.lerp(bird.y, alpha);
+
         draw_circle(bird.x, y, bird.radius, YELLOW);
     }
 
@@ -47,7 +48,6 @@ impl Renderer {
         let x = prev_pipe.x.lerp(pipe.x, alpha);
 
         draw_rectangle(x, 0.0, pipe.width, pipe.gap_start_y, GREEN);
-
         draw_rectangle(
             x,
             pipe.gap_start_y + pipe.gap_size,
