@@ -39,8 +39,8 @@ impl Renderer {
     }
 
     pub fn render_bird(bird: &Bird, prev_bird: &Bird, alpha: f32) {
-        let y = prev_bird.pos.y.lerp(bird.pos.y, alpha);
-        draw_circle(bird.pos.x, y, bird.radius, YELLOW);
+        let y = prev_bird.y.lerp(bird.y, alpha);
+        draw_circle(bird.x, y, bird.radius, YELLOW);
     }
 
     pub fn render_pipe(pipe: &Pipe, prev_pipe: &Pipe, alpha: f32) {

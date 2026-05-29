@@ -5,10 +5,10 @@ use crate::{bird::Bird, pipe::Pipe};
 pub fn collide(bird: &Bird, pipe: &Pipe) -> bool {
     let r = bird.radius;
 
-    let left = bird.pos.x - r;
-    let right = bird.pos.x + r;
-    let top = bird.pos.y - r;
-    let bottom = bird.pos.y + r;
+    let left = bird.x - r;
+    let right = bird.x + r;
+    let top = bird.y - r;
+    let bottom = bird.y + r;
 
     // outside pipe horizontally → no collision
     if right < pipe.x || left > pipe.x + pipe.width {
