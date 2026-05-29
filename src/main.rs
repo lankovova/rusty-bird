@@ -38,8 +38,6 @@ async fn main() {
             accumulator -= FIXED_DT;
         }
 
-        world.check_collisions();
-
         Renderer::render_world(&world);
 
         next_frame().await

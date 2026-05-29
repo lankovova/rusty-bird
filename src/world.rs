@@ -38,11 +38,13 @@ impl World {
     pub fn update(&mut self) {
         self.bird.update();
         self.pipes.iter_mut().for_each(|p| p.update());
+
+        self.check_collisions();
     }
 
-    pub fn check_collisions(&mut self) {
+    fn check_collisions(&mut self) {
+        // FIXME: Could optimize by checking collision only with the closest pipe
         for pipe in &self.pipes {
-            // FIXME: Could optimize by checking collision only with the closest pipe
             if collider::collide(&self.bird, pipe) {
                 self.game_over = true;
             }
