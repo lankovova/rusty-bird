@@ -3,14 +3,14 @@ use macroquad::prelude::*;
 
 const GRAVITY: f32 = 0.05;
 
-struct Point {
-    x: f32,
-    y: f32,
+pub struct Point {
+    pub x: f32,
+    pub y: f32,
 }
 
 pub struct Bird {
-    pos: Point,
-    radius: f32,
+    pub pos: Point,
+    pub radius: f32,
     velocity: f32,
 }
 
@@ -30,10 +30,6 @@ impl Bird {
     pub fn update(&mut self) {
         self.velocity += GRAVITY;
         self.pos.y += self.velocity;
-    }
-
-    pub fn draw(&self) {
-        draw_circle(self.pos.x, self.pos.y, self.radius, YELLOW);
     }
 
     // TODO: Do proper collision

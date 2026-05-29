@@ -25,16 +25,4 @@ impl Pipe {
     pub fn is_gone(&self) -> bool {
         self.x < -self.width
     }
-
-    pub fn draw(&self) {
-        draw_rectangle(self.x, 0.0, self.width, self.gap_start_y, GREEN);
-
-        draw_rectangle(
-            self.x,
-            self.gap_start_y + self.gap_size,
-            self.width,
-            screen_height() - self.gap_start_y,
-            GREEN,
-        );
-    }
 }

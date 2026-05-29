@@ -1,8 +1,10 @@
 mod bird;
 mod pipe;
+mod renderer;
 
 use crate::bird::Bird;
 use crate::pipe::Pipe;
+use crate::renderer::Renderer;
 use macroquad::prelude::*;
 
 // draw_line(40.0, 40.0, 100.0, 200.0, 15.0, BLUE);
@@ -67,8 +69,12 @@ async fn main() {
 
         clear_background(Color::new(0.0, 0.5, 0.5, 1.0));
 
-        bird.draw();
-        pipes_pool.iter_mut().for_each(|pipe| pipe.draw());
+        // TODO: Create World struct that would hold all the game objects data
+        // and move this rendering into render_world fn
+        Renderer::render_bird(&bird);
+        pipes_pool
+            .iter()
+            .for_each(|pipe| Renderer::render_pipe(pipe));
 
         // TODO: Stop physics on game over
         if game_over {
