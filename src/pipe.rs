@@ -12,7 +12,7 @@ pub struct Pipe {
 
 impl Pipe {
     pub fn update(&mut self) {
-        self.x -= 3.0;
+        self.x -= 4.0;
     }
 
     pub fn is_gone(&self) -> bool {

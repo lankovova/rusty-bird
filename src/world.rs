@@ -37,7 +37,7 @@ impl World {
 
         self.pipes.retain(|pipe| !pipe.is_gone());
 
-        if current_time - self.last_time_pipe_spawned > 3.0 {
+        if current_time - self.last_time_pipe_spawned > 2.0 {
             self.last_time_pipe_spawned = current_time;
             self.spawn_pipe();
         }
@@ -87,7 +87,7 @@ impl World {
         let new_pipe = Pipe {
             id: self.next_pipe_id,
             x: screen_width(),
-            width: 150.0,
+            width: 100.0,
             gap_start_y: gap_start_y,
             gap_size: 300.0,
             has_scored: false,

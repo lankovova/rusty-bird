@@ -1,6 +1,6 @@
 use macroquad::prelude::*;
 
-const GRAVITY: f32 = 0.2;
+const GRAVITY: f32 = 0.4;
 
 #[derive(Clone)]
 pub struct Bird {
@@ -12,7 +12,7 @@ pub struct Bird {
 
 impl Bird {
     pub fn flap(&mut self) {
-        self.velocity = -8.0;
+        self.velocity = -12.0;
     }
 
     pub fn update(&mut self) {
