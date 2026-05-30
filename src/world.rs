@@ -31,6 +31,10 @@ impl World {
     }
 
     pub fn process(&mut self, current_time: f32) {
+        if self.game_over {
+            return;
+        }
+
         self.pipes.retain(|pipe| !pipe.is_gone());
 
         if current_time - self.last_time_pipe_spawned > 3.0 {
@@ -48,6 +52,10 @@ impl World {
     }
 
     pub fn update(&mut self) {
+        if self.game_over {
+            return;
+        }
+
         self.bird.update();
         self.pipes.iter_mut().for_each(|p| p.update());
 

@@ -26,10 +26,17 @@ impl Renderer {
         // FIXME: Stop physics on game over
         if world.game_over {
             draw_text(
-                format!("You ded. Score {}!", world.score),
+                format!("You ded.\nScore {}!", world.score),
                 screen_width() / 2.0 - 200.0,
                 screen_height() / 2.0,
                 60.0,
+                BLACK,
+            );
+            draw_text(
+                "[R] to restart",
+                screen_width() / 2.0 - 150.0,
+                screen_height() / 2.0 + 50.0,
+                50.0,
                 BLACK,
             );
         }

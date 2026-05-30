@@ -30,6 +30,12 @@ async fn main() {
         current_time += dt;
         accumulator += dt;
 
+        if is_key_released(KeyCode::R) {
+            world = World::new();
+            prev_world = world.clone();
+            accumulator = 0.0;
+        }
+
         world.process(current_time);
 
         while accumulator >= FIXED_DT {

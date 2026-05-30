@@ -1,11 +1,12 @@
 ### Todo:
 
 - [x] Score count. Increase score by on for each pipe passed
+- [x] Add restart loop
 - [ ] Tweak the sizes and speed to have some challenge
 - [ ] Add sprites/pixel art for bird, pipes and background
 - [ ] Parallax effect for background
 - [ ] Main menu
-- [ ] Death screen. Stop moving the pipes, show final score
+- [x] Death screen. Stop moving the pipes, show final score
 - [ ] Death particles effect
 - [ ] Passing a pipe effect
 - [ ] Balancing / skill issue
