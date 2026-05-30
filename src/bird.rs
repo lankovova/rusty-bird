@@ -12,7 +12,7 @@ pub struct Bird {
 
 impl Bird {
     pub fn flap(&mut self) {
-        self.velocity = -12.0;
+        self.velocity = -13.0;
     }
 
     pub fn update(&mut self) {

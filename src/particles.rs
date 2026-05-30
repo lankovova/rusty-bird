@@ -44,7 +44,7 @@ fn spawn_explosion(
 }
 
 pub fn spawn_bird_death_explosion(pos: Vec2, particles: &mut Vec<Particle>, bird_vel: Vec2) {
-    let bird_velocity_influence = 70.0;
+    let bird_velocity_influence = 50.0;
 
     spawn_explosion(
         pos,

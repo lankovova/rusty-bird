@@ -80,7 +80,7 @@ impl Renderer {
             draw_circle(
                 p.pos.x,
                 p.pos.y,
-                3.0 * t,
+                5.0 * t,
                 Color::new(p.color.r, p.color.g, p.color.b, alpha),
             );
         }
