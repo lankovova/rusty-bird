@@ -9,6 +9,7 @@
 - [ ] Main menu
 - [x] Death screen. Stop moving the pipes, show final score
 - [x] Death particles effect
+- [ ] Add screen shake on death
 - [ ] Passing a pipe effect
 - [ ] Balancing / skill issue
     - [ ] Tighten gap size in pipes
