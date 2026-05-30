@@ -1,10 +1,16 @@
-use crate::{bird::Bird, collider, pipe::Pipe};
+use crate::{
+    bird::Bird,
+    collider,
+    particles::{self, Particle},
+    pipe::Pipe,
+};
 use macroquad::prelude::*;
 
 #[derive(Clone)]
 pub struct World {
     pub bird: Bird,
     pub pipes: Vec<Pipe>,
+    pub particles: Vec<Particle>,
     pub game_over: bool,
     pub score: u32,
     last_time_pipe_spawned: f32,
@@ -23,6 +29,7 @@ impl World {
         Self {
             bird,
             pipes: vec![],
+            particles: vec![],
             game_over: false,
             score: 0,
             last_time_pipe_spawned: -100.0,
@@ -34,8 +41,6 @@ impl World {
         if self.game_over {
             return;
         }
-
-        self.pipes.retain(|pipe| !pipe.is_gone());
 
         if current_time - self.last_time_pipe_spawned > 2.0 {
             self.last_time_pipe_spawned = current_time;
@@ -51,7 +56,9 @@ impl World {
         }
     }
 
-    pub fn update(&mut self) {
+    pub fn update(&mut self, dt: f32) {
+        particles::update_particles(&mut self.particles, dt);
+
         if self.game_over {
             return;
         }
@@ -59,7 +66,17 @@ impl World {
         self.bird.update();
         self.pipes.iter_mut().for_each(|p| p.update());
 
-        self.check_collisions();
+        self.pipes.retain(|pipe| !pipe.is_gone());
+
+        let is_colliding = self.is_colliding();
+        if is_colliding {
+            self.game_over = true;
+            particles::spawn_bird_death_explosion(
+                vec2(self.bird.x, self.bird.y),
+                &mut self.particles,
+                vec2(4.0, self.bird.velocity),
+            );
+        }
 
         // Increase score for each passed pipe
         if !self.game_over {
@@ -72,13 +89,15 @@ impl World {
         }
     }
 
-    fn check_collisions(&mut self) {
+    fn is_colliding(&mut self) -> bool {
         // FIXME: Could optimize by checking collision only with the closest pipe
         for pipe in &self.pipes {
             if collider::collide(&self.bird, pipe) {
-                self.game_over = true;
+                return true;
             }
         }
+
+        return false;
     }
 
     fn spawn_pipe(&mut self) {

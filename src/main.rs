@@ -1,5 +1,6 @@
 mod bird;
 mod collider;
+mod particles;
 mod pipe;
 mod renderer;
 mod world;
@@ -41,7 +42,7 @@ async fn main() {
         while accumulator >= FIXED_DT {
             prev_world = world.clone();
 
-            world.update();
+            world.update(dt);
             accumulator -= FIXED_DT;
         }
 
