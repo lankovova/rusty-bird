@@ -16,7 +16,6 @@ impl Renderer {
         }
 
         world.pipes.iter().for_each(|pipe| {
-            // FIXME: Could be optimized because pipes have uniq ids and they are sorted in the vec
             let prev_pipe = prev_world
                 .pipes
                 .iter()
@@ -28,7 +27,6 @@ impl Renderer {
 
         Renderer::draw_particles(&world.particles);
 
-        // FIXME: Stop physics on game over
         if world.game_over {
             draw_text(
                 format!("You ded.\nScore {}!", world.score),
