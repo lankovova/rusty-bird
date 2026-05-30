@@ -2,7 +2,7 @@ use crate::{bird::Bird, pipe::Pipe};
 
 // TODO: Do proper collision
 // rn treating bird as a square
-pub fn collide(bird: &Bird, pipe: &Pipe) -> bool {
+pub fn is_bird_colliding_with_pipe(bird: &Bird, pipe: &Pipe) -> bool {
     let r = bird.radius;
 
     let left = bird.x - r;

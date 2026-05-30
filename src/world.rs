@@ -68,9 +68,10 @@ impl World {
 
         self.pipes.retain(|pipe| !pipe.is_gone());
 
-        let is_colliding = self.is_colliding();
-        if is_colliding {
+        let is_bird_hit_the_pipe = self.is_bird_colliding_with_pipe();
+        if is_bird_hit_the_pipe {
             self.game_over = true;
+
             particles::spawn_bird_death_explosion(
                 vec2(self.bird.x, self.bird.y),
                 &mut self.particles,
@@ -89,10 +90,9 @@ impl World {
         }
     }
 
-    fn is_colliding(&mut self) -> bool {
-        // FIXME: Could optimize by checking collision only with the closest pipe
+    fn is_bird_colliding_with_pipe(&mut self) -> bool {
         for pipe in &self.pipes {
-            if collider::collide(&self.bird, pipe) {
+            if collider::is_bird_colliding_with_pipe(&self.bird, pipe) {
                 return true;
             }
         }
