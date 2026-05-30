@@ -8,7 +8,7 @@
 - [ ] Parallax effect for background
 - [ ] Main menu
 - [x] Death screen. Stop moving the pipes, show final score
-- [ ] Death particles effect
+- [x] Death particles effect
 - [ ] Passing a pipe effect
 - [ ] Balancing / skill issue
     - [ ] Tighten gap size in pipes
