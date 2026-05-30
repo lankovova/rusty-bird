@@ -2,6 +2,7 @@
 
 - [x] Score count. Increase score by on for each pipe passed
 - [x] Add restart loop
+- [x] Place pipe gaps at different heights
 - [ ] Tweak the sizes and speed to have some challenge
 - [ ] Add sprites/pixel art for bird, pipes and background
 - [ ] Parallax effect for background
