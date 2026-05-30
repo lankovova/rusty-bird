@@ -29,7 +29,7 @@ impl World {
         Self {
             bird,
             pipes: vec![],
-            particles: vec![],
+            particles: vec![], // FIXME: Could optimize by using pre allocated space array
             game_over: false,
             score: 0,
             last_time_pipe_spawned: -100.0,
