@@ -4,6 +4,8 @@ use macroquad::{
     rand,
 };
 
+const BIRD_PARTICLE_VELOCITY_INFLUENCE: f32 = 50.0;
+
 #[derive(Clone)]
 pub struct Particle {
     pub pos: Vec2,
@@ -44,8 +46,6 @@ fn spawn_explosion(
 }
 
 pub fn spawn_bird_death_explosion(pos: Vec2, particles: &mut Vec<Particle>, bird_vel: Vec2) {
-    let bird_velocity_influence = 50.0;
-
     spawn_explosion(
         pos,
         particles,
@@ -55,7 +55,7 @@ pub fn spawn_bird_death_explosion(pos: Vec2, particles: &mut Vec<Particle>, bird
         400.0,
         1000.0,
         bird_vel,
-        bird_velocity_influence,
+        BIRD_PARTICLE_VELOCITY_INFLUENCE,
     );
     spawn_explosion(
         pos,
@@ -66,7 +66,7 @@ pub fn spawn_bird_death_explosion(pos: Vec2, particles: &mut Vec<Particle>, bird
         300.0,
         600.0,
         bird_vel,
-        bird_velocity_influence,
+        BIRD_PARTICLE_VELOCITY_INFLUENCE,
     );
     spawn_explosion(
         pos,
@@ -77,7 +77,7 @@ pub fn spawn_bird_death_explosion(pos: Vec2, particles: &mut Vec<Particle>, bird
         200.0,
         400.0,
         bird_vel,
-        bird_velocity_influence,
+        BIRD_PARTICLE_VELOCITY_INFLUENCE,
     );
 }
 
