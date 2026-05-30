@@ -6,6 +6,7 @@ pub struct World {
     pub bird: Bird,
     pub pipes: Vec<Pipe>,
     pub game_over: bool,
+    pub score: u32,
     last_time_pipe_spawned: f32,
     next_pipe_id: u32,
 }
@@ -23,6 +24,7 @@ impl World {
             bird,
             pipes: vec![],
             game_over: false,
+            score: 0,
             last_time_pipe_spawned: -100.0,
             next_pipe_id: 0,
         }
@@ -50,6 +52,16 @@ impl World {
         self.pipes.iter_mut().for_each(|p| p.update());
 
         self.check_collisions();
+
+        // Increase score for each passed pipe
+        if !self.game_over {
+            for pipe in &mut self.pipes {
+                if !pipe.has_scored && self.bird.x - self.bird.radius > pipe.x + pipe.width {
+                    self.score += 1;
+                    pipe.has_scored = true;
+                }
+            }
+        }
     }
 
     fn check_collisions(&mut self) {
@@ -68,6 +80,7 @@ impl World {
             width: 150.0,
             gap_start_y: 400.0,
             gap_size: 300.0,
+            has_scored: false,
         };
 
         debug!(

@@ -7,6 +7,7 @@ pub struct Pipe {
     pub width: f32,
     pub gap_start_y: f32,
     pub gap_size: f32,
+    pub has_scored: bool,
 }
 
 impl Pipe {

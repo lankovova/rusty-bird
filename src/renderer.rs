@@ -26,8 +26,8 @@ impl Renderer {
         // FIXME: Stop physics on game over
         if world.game_over {
             draw_text(
-                "You ded",
-                screen_width() / 2.0 - 120.0,
+                format!("You ded. Score {}!", world.score),
+                screen_width() / 2.0 - 200.0,
                 screen_height() / 2.0,
                 60.0,
                 BLACK,
@@ -35,7 +35,10 @@ impl Renderer {
         }
 
         let fps_counter_str = format!("FPS {}", get_fps());
-        draw_text(fps_counter_str, screen_width() - 120.0, 20.0, 30.0, BLACK);
+        draw_text(fps_counter_str, screen_width() - 100.0, 20.0, 30.0, BLACK);
+
+        let score_count_str = format!("Score: {}", world.score);
+        draw_text(score_count_str, 20.0, screen_height() - 20.0, 40.0, BLACK);
     }
 
     pub fn render_bird(bird: &Bird, prev_bird: &Bird, alpha: f32) {

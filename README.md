@@ -1,6 +1,6 @@
 ### Todo:
 
-- [ ] Score count. Increase score by on for each pipe passed
+- [x] Score count. Increase score by on for each pipe passed
 - [ ] Tweak the sizes and speed to have some challenge
 - [ ] Add sprites/pixel art for bird, pipes and background
 - [ ] Parallax effect for background
