@@ -50,7 +50,7 @@ pub fn spawn_bird_death_explosion(pos: Vec2, particles: &mut Vec<Particle>, bird
         pos,
         particles,
         3.0,
-        200,
+        100,
         YELLOW,
         400.0,
         1000.0,

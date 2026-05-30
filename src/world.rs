@@ -74,7 +74,7 @@ impl World {
             particles::spawn_bird_death_explosion(
                 vec2(self.bird.x, self.bird.y),
                 &mut self.particles,
-                vec2(4.0, self.bird.velocity),
+                vec2(8.0, self.bird.velocity),
             );
         }
 
