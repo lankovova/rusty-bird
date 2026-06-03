@@ -7,8 +7,13 @@
 - [ ] Add sprites/pixel art for bird, pipes and background
 - [ ] Parallax effect for background
 - [ ] Main menu
+- [ ] Set appropriate window size
 - [x] Death screen. Stop moving the pipes, show final score
 - [x] Death particles effect
+- [ ] Add death particles when bird is flying offscreen
+- [ ] Add an offset for offscreen "death" boundaries
+- [ ] Draw particles as quads instead of circles
+- [ ] Make explosion particles in different sizes
 - [ ] Add screen shake on death
 - [ ] Passing a pipe effect
 - [ ] Balancing / skill issue
