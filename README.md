@@ -26,4 +26,4 @@
     - [ ] Pipes vertical movement?
     - [ ] Progressivly increase how hard it is. Speed increase perhaps.
 - [ ] Thematic background and sprites (space, forest, etc.)
-- [ ] Spawn random consumables throuought the level (x2 points, invinsibility, etc.)
+- [ ] Spawn random consumables (temporary buffs) throuought the level (x2 points, invinsibility, magnet, speed up/slow down etc.)
