@@ -1,17 +1,20 @@
-### Todo:
+### Done:
 
 - [x] Score count. Increase score by on for each pipe passed
 - [x] Add restart loop
 - [x] Place pipe gaps at different heights
 - [x] Tweak the sizes and speed to have some challenge
-- [ ] Add sprites/pixel art for bird, pipes and background
-- [ ] Parallax effect for background
-- [ ] Main menu
-- [ ] Set appropriate window size
 - [x] Death screen. Stop moving the pipes, show final score
 - [x] Death particles effect
 - [x] Add death particles when bird is flying offscreen
 - [x] Add an offset for offscreen "death" boundaries
+
+### Todo:
+
+- [ ] Add sprites/pixel art for bird, pipes and background
+- [ ] Parallax effect for background
+- [ ] Main menu
+- [ ] Set appropriate window size
 - [ ] Draw particles as quads instead of circles
 - [ ] Make explosion particles in different sizes
 - [ ] Add screen shake on death
