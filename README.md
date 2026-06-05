@@ -15,7 +15,7 @@
 
 ### Todo:
 
-- [ ] Star between pipes, collect to earn more points
+- [ ] Consumable stars/coins between pipes, collect them to earn more points
 - [ ] Add sprites/pixel art for bird, pipes and background
 - [ ] Parallax effect for background
 - [ ] Fix freeze on first particles spawn
@@ -26,3 +26,5 @@
     - [ ] Random gap size in pipes
     - [ ] Pipes vertical movement?
     - [ ] Progressivly increase how hard it is. Speed increase perhaps.
+- [ ] Thematic background and sprites (space, forest, etc.)
+- [ ] Spawn random consumables throuought the level (x2 points, invinsibility, etc.)
