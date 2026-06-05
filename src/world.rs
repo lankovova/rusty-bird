@@ -53,6 +53,12 @@ impl World {
 
         if self.bird.is_off_screen() {
             self.game_over = true;
+
+            particles::spawn_bird_death_explosion(
+                vec2(self.bird.x, self.bird.y),
+                &mut self.particles,
+                vec2(8.0, self.bird.velocity),
+            );
         }
     }
 
