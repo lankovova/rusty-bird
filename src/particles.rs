@@ -13,6 +13,7 @@ pub struct Particle {
     pub life: f32,
     pub max_life: f32,
     pub color: Color,
+    pub size: f32,
 }
 
 fn spawn_explosion(
@@ -25,6 +26,7 @@ fn spawn_explosion(
     speed_max: f32,
     influence: Vec2,
     influence_strength: f32,
+    size: f32,
 ) {
     for _ in 0..count {
         let angle = rand::gen_range(0.0, std::f32::consts::TAU);
@@ -39,6 +41,7 @@ fn spawn_explosion(
             life: max_life,
             max_life,
             color,
+            size,
         };
 
         particles.push(particle);
@@ -56,6 +59,7 @@ pub fn spawn_bird_death_explosion(pos: Vec2, particles: &mut Vec<Particle>, bird
         1000.0,
         bird_vel,
         BIRD_PARTICLE_VELOCITY_INFLUENCE,
+        5.0,
     );
     spawn_explosion(
         pos,
@@ -67,6 +71,7 @@ pub fn spawn_bird_death_explosion(pos: Vec2, particles: &mut Vec<Particle>, bird
         600.0,
         bird_vel,
         BIRD_PARTICLE_VELOCITY_INFLUENCE,
+        8.0,
     );
     spawn_explosion(
         pos,
@@ -78,6 +83,7 @@ pub fn spawn_bird_death_explosion(pos: Vec2, particles: &mut Vec<Particle>, bird
         400.0,
         bird_vel,
         BIRD_PARTICLE_VELOCITY_INFLUENCE,
+        10.0,
     );
 }
 

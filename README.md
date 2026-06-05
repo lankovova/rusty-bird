@@ -8,15 +8,16 @@
 - [x] Death particles effect
 - [x] Add death particles when bird is flying offscreen
 - [x] Add an offset for offscreen "death" boundaries
+- [x] Draw particles as quads instead of circles
+- [x] Make explosion particles in different sizes
 
 ### Todo:
 
 - [ ] Add sprites/pixel art for bird, pipes and background
 - [ ] Parallax effect for background
+- [ ] Fix freeze on first particles spawn
 - [ ] Main menu
 - [ ] Set appropriate window size
-- [ ] Draw particles as quads instead of circles
-- [ ] Make explosion particles in different sizes
 - [ ] Add screen shake on death
 - [ ] Passing a pipe effect
 - [ ] Balancing / skill issue

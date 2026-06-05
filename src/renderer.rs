@@ -74,13 +74,9 @@ impl Renderer {
         for p in particles {
             let t = p.life / p.max_life;
             let alpha = t.clamp(0.0, 1.0);
+            let color = Color::new(p.color.r, p.color.g, p.color.b, alpha);
 
-            draw_circle(
-                p.pos.x,
-                p.pos.y,
-                5.0 * t,
-                Color::new(p.color.r, p.color.g, p.color.b, alpha),
-            );
+            draw_rectangle(p.pos.x, p.pos.y, p.size * t, p.size * t, color);
         }
     }
 }
