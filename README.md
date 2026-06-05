@@ -15,6 +15,7 @@
 
 ### Todo:
 
+- [ ] Star between pipes, collect to earn more points
 - [ ] Add sprites/pixel art for bird, pipes and background
 - [ ] Parallax effect for background
 - [ ] Fix freeze on first particles spawn
