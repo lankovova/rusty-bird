@@ -68,7 +68,7 @@ impl World {
         self.bird.update();
         self.pipes.iter_mut().for_each(|p| p.update());
 
-        self.pipes.retain(|pipe| !pipe.is_gone());
+        self.pipes.retain(|pipe| !pipe.is_gone_offscreen());
 
         let is_bird_hit_the_pipe = self.is_bird_colliding_with_pipe();
         if is_bird_hit_the_pipe {
@@ -114,13 +114,24 @@ impl World {
         let max_gap_start_y = screen_height() - 300.0;
         let gap_start_y = rand::gen_range(50.0, max_gap_start_y - 50.0);
 
-        let new_pipe = Pipe {
+        let default_pipe = Pipe {
             id: self.next_pipe_id,
             x: screen_width(),
             width: 100.0,
-            gap_start_y: gap_start_y,
+            gap_start_y,
             gap_size: 300.0,
             has_scored: false,
+            direction: 0,
+            moving_speed: 0.0,
+        };
+
+        let new_pipe = match self.score {
+            ..=10 => default_pipe,
+            11.. => Pipe {
+                direction: (rand::gen_range(0.0, 3.0) as i8) - 1,
+                moving_speed: 3.0,
+                ..default_pipe
+            },
         };
 
         debug!(

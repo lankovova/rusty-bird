@@ -12,6 +12,7 @@
 - [x] Make explosion particles in different sizes
 - [x] Add screen shake on death
 - [x] Passing a pipe effect
+- [x] Pipes vertical movement (starts to move 2/3 pipes after 10 scored points)
 
 ### Todo:
 
@@ -23,7 +24,6 @@
 - [ ] Set appropriate window size
 - [ ] Balancing / skill issue
     - [ ] Tighten gap size in pipes
-    - [ ] Pipes vertical movement?
     - [ ] Progressivly increase how hard it is. Speed increase perhaps.
 - [ ] Thematic background and sprites (space, forest, etc.)
 - [ ] Spawn random consumables (temporary buffs) throuought the level (x2 points, invinsibility, magnet, speed up/slow down etc.)
