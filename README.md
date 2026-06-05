@@ -11,6 +11,7 @@
 - [x] Draw particles as quads instead of circles
 - [x] Make explosion particles in different sizes
 - [x] Add screen shake on death
+- [x] Passing a pipe effect
 
 ### Todo:
 
@@ -19,7 +20,6 @@
 - [ ] Fix freeze on first particles spawn
 - [ ] Main menu
 - [ ] Set appropriate window size
-- [ ] Passing a pipe effect
 - [ ] Balancing / skill issue
     - [ ] Tighten gap size in pipes
     - [ ] Random gap size in pipes

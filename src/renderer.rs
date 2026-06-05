@@ -7,9 +7,26 @@ use crate::world::World;
 
 const MAX_SHAKE_IN_PIXELS: f32 = 40.0;
 
+struct Flash {
+    life: f32,
+    max_life: f32,
+    color: Color,
+}
+
+impl Flash {
+    fn new() -> Self {
+        Self {
+            life: 0.0,
+            max_life: 0.0,
+            color: WHITE,
+        }
+    }
+}
+
 pub struct Renderer {
     shake_offset: Vec2,
     shake_trauma: f32, // 0.0 = no shake, 1.0 = max shake
+    flash: Flash,
 }
 
 impl Renderer {
@@ -17,7 +34,16 @@ impl Renderer {
         Self {
             shake_offset: vec2(0.0, 0.0),
             shake_trauma: 0.0,
+            flash: Flash::new(),
         }
+    }
+
+    pub fn add_flash(&mut self, life: f32, color: Color) {
+        self.flash = Flash {
+            life,
+            max_life: life,
+            color,
+        };
     }
 
     pub fn add_trauma(&mut self, amount: f32) {
@@ -33,6 +59,10 @@ impl Renderer {
             rand::gen_range(-1.0, 1.0) * magnitude * MAX_SHAKE_IN_PIXELS,
             rand::gen_range(-1.0, 1.0) * magnitude * MAX_SHAKE_IN_PIXELS,
         );
+
+        if self.flash.life > 0.0 {
+            self.flash.life = (self.flash.life - dt).max(0.0);
+        }
     }
 
     pub fn render_world(&self, world: &World, prev_world: &World, alpha: f32) {
@@ -53,6 +83,7 @@ impl Renderer {
         });
 
         self.draw_particles(&world.particles);
+        self.draw_falsh();
 
         if world.game_over {
             draw_text(
@@ -72,15 +103,15 @@ impl Renderer {
         }
 
         let fps_counter_str = format!("FPS {}", get_fps());
-        draw_text(fps_counter_str, screen_width() - 100.0, 20.0, 30.0, BLACK);
+        draw_text(fps_counter_str, screen_width() - 100.0, 20.0, 20.0, BLACK);
 
         let score_count_str = format!("Score: {}", world.score);
         draw_text(
             score_count_str,
             20.0 + self.shake_offset.x,
-            screen_height() - 20.0 + self.shake_offset.y,
+            40.0 + self.shake_offset.y,
             40.0,
-            BLACK,
+            GOLD,
         );
     }
 
@@ -128,5 +159,17 @@ impl Renderer {
                 color,
             );
         }
+    }
+
+    fn draw_falsh(&self) {
+        if self.flash.life <= 0.0 {
+            return;
+        }
+
+        let t = self.flash.life / (4.0 * self.flash.max_life);
+        let alpha = t.clamp(0.0, 1.0);
+        let color = self.flash.color.with_alpha(alpha);
+
+        draw_rectangle(0.0, 0.0, screen_width(), screen_height(), color);
     }
 }

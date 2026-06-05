@@ -82,6 +82,9 @@ impl World {
                 if !pipe.has_scored && self.bird.x - self.bird.radius > pipe.x + pipe.width {
                     self.score += 1;
                     pipe.has_scored = true;
+
+                    // Flash as a passing pipe effect
+                    renderer.add_flash(0.5, GOLD);
                 }
             }
         }
