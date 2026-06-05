@@ -111,7 +111,8 @@ impl World {
     }
 
     fn spawn_pipe(&mut self) {
-        let gap_start_y = rand::gen_range(screen_height() * 0.1, screen_height() * 0.6);
+        let max_gap_start_y = screen_height() - 300.0;
+        let gap_start_y = rand::gen_range(50.0, max_gap_start_y - 50.0);
 
         let new_pipe = Pipe {
             id: self.next_pipe_id,
