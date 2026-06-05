@@ -23,7 +23,6 @@
 - [ ] Set appropriate window size
 - [ ] Balancing / skill issue
     - [ ] Tighten gap size in pipes
-    - [ ] Random gap size in pipes
     - [ ] Pipes vertical movement?
     - [ ] Progressivly increase how hard it is. Speed increase perhaps.
 - [ ] Thematic background and sprites (space, forest, etc.)
