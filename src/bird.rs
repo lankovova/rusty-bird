@@ -2,6 +2,8 @@ use macroquad::prelude::*;
 
 const GRAVITY: f32 = 0.4;
 
+const DEATH_SAVE_OFFSCREEN_OFFSET: f32 = 200.0;
+
 #[derive(Clone)]
 pub struct Bird {
     pub x: f32,
@@ -24,13 +26,16 @@ impl Bird {
         let topmost = self.y;
         let bottommost = self.y + self.radius * 2.0;
 
-        if topmost < -200.0 || bottommost > screen_height() {
+        if topmost < -DEATH_SAVE_OFFSCREEN_OFFSET
+            || bottommost > screen_height() + DEATH_SAVE_OFFSCREEN_OFFSET
+        {
             return true;
         }
 
         let leftmost = self.x;
         let rightmost = self.x + self.radius * 2.0;
 
+        // Sanity check, should never happen
         if leftmost < 0.0 || rightmost > screen_width() {
             return true;
         }

@@ -11,7 +11,7 @@
 - [x] Death screen. Stop moving the pipes, show final score
 - [x] Death particles effect
 - [x] Add death particles when bird is flying offscreen
-- [ ] Add an offset for offscreen "death" boundaries
+- [x] Add an offset for offscreen "death" boundaries
 - [ ] Draw particles as quads instead of circles
 - [ ] Make explosion particles in different sizes
 - [ ] Add screen shake on death
