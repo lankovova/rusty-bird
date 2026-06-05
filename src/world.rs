@@ -3,6 +3,7 @@ use crate::{
     collider,
     particles::{self, Particle},
     pipe::Pipe,
+    renderer::Renderer,
 };
 use macroquad::prelude::*;
 
@@ -37,7 +38,7 @@ impl World {
         }
     }
 
-    pub fn process(&mut self, current_time: f32) {
+    pub fn process(&mut self, current_time: f32, renderer: &mut Renderer) {
         if self.game_over {
             return;
         }
@@ -53,16 +54,11 @@ impl World {
 
         if self.bird.is_off_screen() {
             self.game_over = true;
-
-            particles::spawn_bird_death_explosion(
-                vec2(self.bird.x, self.bird.y),
-                &mut self.particles,
-                vec2(8.0, self.bird.velocity),
-            );
+            self.kill_the_bird(renderer);
         }
     }
 
-    pub fn update(&mut self, dt: f32) {
+    pub fn update(&mut self, dt: f32, renderer: &mut Renderer) {
         particles::update_particles(&mut self.particles, dt);
 
         if self.game_over {
@@ -77,12 +73,7 @@ impl World {
         let is_bird_hit_the_pipe = self.is_bird_colliding_with_pipe();
         if is_bird_hit_the_pipe {
             self.game_over = true;
-
-            particles::spawn_bird_death_explosion(
-                vec2(self.bird.x, self.bird.y),
-                &mut self.particles,
-                vec2(8.0, self.bird.velocity),
-            );
+            self.kill_the_bird(renderer);
         }
 
         // Increase score for each passed pipe
@@ -94,6 +85,16 @@ impl World {
                 }
             }
         }
+    }
+
+    fn kill_the_bird(&mut self, renderer: &mut Renderer) {
+        particles::spawn_bird_death_explosion(
+            vec2(self.bird.x, self.bird.y),
+            &mut self.particles,
+            vec2(8.0, self.bird.velocity),
+        );
+
+        renderer.add_trauma(0.5);
     }
 
     fn is_bird_colliding_with_pipe(&mut self) -> bool {

@@ -10,6 +10,7 @@
 - [x] Add an offset for offscreen "death" boundaries
 - [x] Draw particles as quads instead of circles
 - [x] Make explosion particles in different sizes
+- [x] Add screen shake on death
 
 ### Todo:
 
@@ -18,7 +19,6 @@
 - [ ] Fix freeze on first particles spawn
 - [ ] Main menu
 - [ ] Set appropriate window size
-- [ ] Add screen shake on death
 - [ ] Passing a pipe effect
 - [ ] Balancing / skill issue
     - [ ] Tighten gap size in pipes
