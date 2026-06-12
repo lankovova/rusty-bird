@@ -126,9 +126,19 @@ impl World {
         };
 
         let new_pipe = match self.score {
-            ..=10 => default_pipe,
-            11.. => Pipe {
+            ..=5 => default_pipe,
+            6..=10 => Pipe {
                 direction: (rand::gen_range(0.0, 3.0) as i8) - 1,
+                moving_speed: 2.0,
+                ..default_pipe
+            },
+            11..=15 => Pipe {
+                direction: (rand::gen_range(0.0, 2.0) as i8) * 2 - 1,
+                moving_speed: 2.0,
+                ..default_pipe
+            },
+            16.. => Pipe {
+                direction: (rand::gen_range(0.0, 2.0) as i8) * 2 - 1,
                 moving_speed: 3.0,
                 ..default_pipe
             },
