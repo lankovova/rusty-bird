@@ -19,6 +19,7 @@
 
 ### Todo:
 
+- [ ] Balance text/bg tint colors
 - [ ] Add art for pipes
 - [ ] Fix freeze on first particles spawn
 - [ ] Main menu
