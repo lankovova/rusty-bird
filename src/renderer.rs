@@ -30,15 +30,17 @@ pub struct Renderer {
     shake_trauma: f32, // 0.0 = no shake, 1.0 = max shake
     flash: Flash,
     bird_texture: Texture2D,
+    world_texture: Texture2D,
 }
 
 impl Renderer {
-    pub fn new(bird_texture: Texture2D) -> Self {
+    pub fn new(bird_texture: Texture2D, world_texture: Texture2D) -> Self {
         Self {
             shake_offset: vec2(0.0, 0.0),
             shake_trauma: 0.0,
             flash: Flash::new(),
             bird_texture,
+            world_texture,
         }
     }
 
@@ -69,8 +71,42 @@ impl Renderer {
         }
     }
 
+    fn draw_parallax_background(&self, world: &World, speed_factor: f32) {
+        let tex_width = self.world_texture.width();
+        let tex_height = self.world_texture.height();
+
+        // Preserve aspect ratio
+        let scale = screen_height() / tex_height;
+
+        let draw_width = tex_width * scale;
+        let draw_height = tex_height * scale;
+
+        let offset = (world.x * speed_factor) % draw_width;
+
+        let mut x = -offset;
+
+        while x < screen_width() {
+            draw_texture_ex(
+                &self.world_texture,
+                x,
+                0.0,
+                Color::new(0.6, 0.7, 0.8, 0.7), // Tint the background to make it subtle
+                DrawTextureParams {
+                    dest_size: Some(vec2(draw_width, draw_height)),
+                    ..Default::default()
+                },
+            );
+
+            x += draw_width;
+        }
+    }
+
     pub fn render_world(&self, world: &World, prev_world: &World, alpha: f32) {
         clear_background(Color::new(0.0, 0.5, 0.5, 1.0));
+
+        self.draw_parallax_background(
+            &world, 0.3, // parallax factor
+        );
 
         if !world.game_over {
             self.render_bird(&world.bird, &prev_world.bird, alpha);
@@ -121,13 +157,6 @@ impl Renderer {
 
     pub fn render_bird(&self, bird: &Bird, prev_bird: &Bird, alpha: f32) {
         let y = prev_bird.y.lerp(bird.y, alpha);
-
-        draw_circle(
-            bird.x + self.shake_offset.x,
-            y + self.shake_offset.y,
-            bird.radius,
-            YELLOW,
-        );
 
         let rotation = bird
             .velocity

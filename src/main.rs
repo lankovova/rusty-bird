@@ -15,12 +15,14 @@ const FIXED_DT: f32 = 1.0 / 60.0;
 async fn main() {
     let bird_texture = load_texture("assets/bird.png").await.unwrap();
     bird_texture.set_filter(FilterMode::Nearest);
+    let world_bg = load_texture("assets/kitchen.png").await.unwrap();
+    world_bg.set_filter(FilterMode::Linear);
 
     let mut world = World::new();
     let mut prev_world: World = world.clone();
     let mut accumulator = 0.0;
     let mut current_time = 0.0;
-    let mut renderer = Renderer::new(bird_texture);
+    let mut renderer = Renderer::new(bird_texture, world_bg);
 
     // Skip first frame because screen dimensions are wrong on the first pass
     // probably because of auto resize that happens when user uses WM
@@ -37,7 +39,7 @@ async fn main() {
             accumulator = 0.0;
         }
 
-        world.process(current_time, &mut renderer);
+        world.process(dt, current_time, &mut renderer);
         renderer.update(dt);
 
         while accumulator >= FIXED_DT {

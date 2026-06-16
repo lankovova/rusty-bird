@@ -13,17 +13,22 @@
 - [x] Add screen shake on death
 - [x] Passing a pipe effect
 - [x] Pipes vertical movement (starts to move 2/3 pipes after 10 scored points)
+- [x] Add art for bird
+- [x] Add art background
+- [x] Parallax effect for background
 
 ### Todo:
 
-- [ ] Consumable stars/coins between pipes, collect them to earn more points
-- [ ] Add sprites/pixel art for bird, pipes and background
-- [ ] Parallax effect for background
+- [ ] Add art for pipes
 - [ ] Fix freeze on first particles spawn
 - [ ] Main menu
 - [ ] Set appropriate window size
 - [ ] Balancing / skill issue
     - [ ] Tighten gap size in pipes
     - [ ] Progressivly increase how hard it is. Speed increase perhaps.
+
+### Long run:
+
+- [ ] Consumable stars/coins between pipes, collect them to earn more points
 - [ ] Thematic background and sprites (space, forest, etc.)
 - [ ] Spawn random consumables (temporary buffs) throughout the level (x2 points, invinsibility, magnet, speed up/slow down etc.)

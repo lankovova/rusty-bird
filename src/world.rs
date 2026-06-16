@@ -14,6 +14,7 @@ pub struct World {
     pub particles: Vec<Particle>,
     pub game_over: bool,
     pub score: u32,
+    pub x: f32,
     last_time_pipe_spawned: f32,
     next_pipe_id: u32,
 }
@@ -33,15 +34,18 @@ impl World {
             particles: vec![], // FIXME: Could optimize by using pre allocated space array
             game_over: false,
             score: 0,
+            x: 0.0,
             last_time_pipe_spawned: -100.0,
             next_pipe_id: 0,
         }
     }
 
-    pub fn process(&mut self, current_time: f32, renderer: &mut Renderer) {
+    pub fn process(&mut self, dt: f32, current_time: f32, renderer: &mut Renderer) {
         if self.game_over {
             return;
         }
+
+        self.x += 200.0 * dt;
 
         if current_time - self.last_time_pipe_spawned > 2.0 {
             self.last_time_pipe_spawned = current_time;
