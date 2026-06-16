@@ -6,6 +6,8 @@ use crate::pipe::Pipe;
 use crate::world::World;
 
 const MAX_SHAKE_IN_PIXELS: f32 = 40.0;
+const MAX_BIRD_UP_ANGLE: f32 = -1.0;
+const MAX_BIRD_DOWN_ANGLE: f32 = 1.0;
 
 struct Flash {
     life: f32,
@@ -27,14 +29,16 @@ pub struct Renderer {
     shake_offset: Vec2,
     shake_trauma: f32, // 0.0 = no shake, 1.0 = max shake
     flash: Flash,
+    bird_texture: Texture2D,
 }
 
 impl Renderer {
-    pub fn new() -> Self {
+    pub fn new(bird_texture: Texture2D) -> Self {
         Self {
             shake_offset: vec2(0.0, 0.0),
             shake_trauma: 0.0,
             flash: Flash::new(),
+            bird_texture,
         }
     }
 
@@ -123,6 +127,25 @@ impl Renderer {
             y + self.shake_offset.y,
             bird.radius,
             YELLOW,
+        );
+
+        let rotation = bird
+            .velocity
+            .clamp(-13.0, 15.0) // prevent insane values
+            .remap(-13.0, 15.0, MAX_BIRD_UP_ANGLE, MAX_BIRD_DOWN_ANGLE);
+
+        let size = vec2(32.0 * 1.5, 29.0 * 1.5);
+        draw_texture_ex(
+            &self.bird_texture,
+            bird.x - size.x / 2.0,
+            y - size.y / 2.0 - 2.0,
+            WHITE,
+            DrawTextureParams {
+                rotation: rotation,
+                dest_size: Some(size),
+                pivot: Some(vec2(bird.x, y)),
+                ..Default::default()
+            },
         );
     }
 

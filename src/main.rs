@@ -13,11 +13,14 @@ const FIXED_DT: f32 = 1.0 / 60.0;
 
 #[macroquad::main("Rusty Bird")]
 async fn main() {
+    let bird_texture = load_texture("assets/bird.png").await.unwrap();
+    bird_texture.set_filter(FilterMode::Nearest);
+
     let mut world = World::new();
     let mut prev_world: World = world.clone();
     let mut accumulator = 0.0;
     let mut current_time = 0.0;
-    let mut renderer = Renderer::new();
+    let mut renderer = Renderer::new(bird_texture);
 
     // Skip first frame because screen dimensions are wrong on the first pass
     // probably because of auto resize that happens when user uses WM
