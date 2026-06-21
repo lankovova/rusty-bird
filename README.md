@@ -20,7 +20,7 @@
 - [x] Tighten gap size in pipes
 - [x] Progressivly increase how hard it is
 
-### Todo:
+### Back burner:
 
 - [ ] Fix freeze on first particles spawn
 - [ ] Main menu
