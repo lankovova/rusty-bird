@@ -153,7 +153,7 @@ impl Renderer {
         if world.game_over {
             draw_text_outline(
                 &format!("You ded.\nScore {}!", world.score),
-                screen_width() / 2.0 - 220.0 + self.shake_offset.x,
+                screen_width() / 2.0 - 280.0 + self.shake_offset.x,
                 screen_height() / 2.0 + self.shake_offset.y,
                 80.0,
                 WHITE,
@@ -161,7 +161,7 @@ impl Renderer {
             );
             draw_text_outline(
                 "[R] to restart",
-                screen_width() / 2.0 - 120.0 + self.shake_offset.x,
+                screen_width() / 2.0 - 180.0 + self.shake_offset.x,
                 screen_height() / 2.0 + 50.0 + self.shake_offset.y,
                 50.0,
                 WHITE,
@@ -170,13 +170,13 @@ impl Renderer {
         }
 
         let fps_counter_str = format!("FPS {}", get_fps());
-        draw_text(fps_counter_str, screen_width() - 100.0, 20.0, 20.0, GREEN);
+        draw_text(fps_counter_str, screen_width() - 70.0, 20.0, 20.0, GREEN);
 
         let score_count_str = format!("Score: {}", world.score);
         draw_text_outline(
             &score_count_str,
-            20.0 + self.shake_offset.x,
-            40.0 + self.shake_offset.y,
+            30.0 + self.shake_offset.x,
+            50.0 + self.shake_offset.y,
             50.0,
             GOLD,
             BLACK,
