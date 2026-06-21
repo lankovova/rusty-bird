@@ -25,6 +25,31 @@ impl Flash {
     }
 }
 
+fn draw_text_outline(
+    text: &str,
+    x: f32,
+    y: f32,
+    font_size: f32,
+    color: Color,
+    outline_color: Color,
+) {
+    let offset = 1.5;
+
+    // outline (8 directions)
+    draw_text(text, x - offset, y - offset, font_size, outline_color);
+    draw_text(text, x + offset, y - offset, font_size, outline_color);
+    draw_text(text, x - offset, y + offset, font_size, outline_color);
+    draw_text(text, x + offset, y + offset, font_size, outline_color);
+
+    draw_text(text, x - offset, y, font_size, outline_color);
+    draw_text(text, x + offset, y, font_size, outline_color);
+    draw_text(text, x, y - offset, font_size, outline_color);
+    draw_text(text, x, y + offset, font_size, outline_color);
+
+    // main text
+    draw_text(text, x, y, font_size, color);
+}
+
 pub struct Renderer {
     shake_offset: Vec2,
     shake_trauma: f32, // 0.0 = no shake, 1.0 = max shake
@@ -126,18 +151,20 @@ impl Renderer {
         self.draw_falsh();
 
         if world.game_over {
-            draw_text(
-                format!("You ded.\nScore {}!", world.score),
-                screen_width() / 2.0 - 200.0 + self.shake_offset.x,
+            draw_text_outline(
+                &format!("You ded.\nScore {}!", world.score),
+                screen_width() / 2.0 - 220.0 + self.shake_offset.x,
                 screen_height() / 2.0 + self.shake_offset.y,
-                60.0,
+                80.0,
+                WHITE,
                 BLACK,
             );
-            draw_text(
+            draw_text_outline(
                 "[R] to restart",
-                screen_width() / 2.0 - 150.0 + self.shake_offset.x,
+                screen_width() / 2.0 - 120.0 + self.shake_offset.x,
                 screen_height() / 2.0 + 50.0 + self.shake_offset.y,
                 50.0,
+                WHITE,
                 BLACK,
             );
         }

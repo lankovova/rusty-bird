@@ -16,10 +16,10 @@
 - [x] Add art for bird
 - [x] Add art background
 - [x] Parallax effect for background
+- [x] Balance text/bg tint colors
 
 ### Todo:
 
-- [ ] Balance text/bg tint colors
 - [ ] Fix freeze on first particles spawn
 - [ ] Main menu
 - [ ] Set appropriate window size
