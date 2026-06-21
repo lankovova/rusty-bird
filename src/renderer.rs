@@ -170,15 +170,16 @@ impl Renderer {
         }
 
         let fps_counter_str = format!("FPS {}", get_fps());
-        draw_text(fps_counter_str, screen_width() - 100.0, 20.0, 20.0, BLACK);
+        draw_text(fps_counter_str, screen_width() - 100.0, 20.0, 20.0, GREEN);
 
         let score_count_str = format!("Score: {}", world.score);
-        draw_text(
-            score_count_str,
+        draw_text_outline(
+            &score_count_str,
             20.0 + self.shake_offset.x,
             40.0 + self.shake_offset.y,
-            40.0,
+            50.0,
             GOLD,
+            BLACK,
         );
     }
 
