@@ -181,19 +181,35 @@ impl Renderer {
     pub fn render_pipe(&self, pipe: &Pipe, prev_pipe: &Pipe, alpha: f32) {
         let x = prev_pipe.x.lerp(pipe.x, alpha);
 
+        let border_size = 3.0;
+
         draw_rectangle(
             x + self.shake_offset.x,
             0.0 + self.shake_offset.y,
             pipe.width,
             pipe.gap_start_y,
-            GREEN,
+            BLACK,
+        );
+        draw_rectangle(
+            x + self.shake_offset.x + border_size,
+            0.0 + self.shake_offset.y,
+            pipe.width - 2.0 * border_size,
+            pipe.gap_start_y - border_size,
+            WHITE,
         );
         draw_rectangle(
             x + self.shake_offset.x,
             pipe.gap_start_y + pipe.gap_size + self.shake_offset.y,
             pipe.width,
             screen_height() - pipe.gap_start_y,
-            GREEN,
+            BLACK,
+        );
+        draw_rectangle(
+            x + self.shake_offset.x + border_size,
+            pipe.gap_start_y + pipe.gap_size + self.shake_offset.y + border_size,
+            pipe.width - 2.0 * border_size,
+            screen_height() - pipe.gap_start_y,
+            GRAY,
         );
     }
 
