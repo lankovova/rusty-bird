@@ -123,7 +123,7 @@ impl World {
             x: screen_width(),
             width: 100.0,
             gap_start_y,
-            gap_size: 300.0,
+            gap_size: 280.0,
             has_scored: false,
             direction: 0,
             moving_speed: 0.0,
@@ -138,12 +138,17 @@ impl World {
             },
             11..=15 => Pipe {
                 direction: (rand::gen_range(0.0, 2.0) as i8) * 2 - 1,
-                moving_speed: 2.0,
+                moving_speed: 3.0,
                 ..default_pipe
             },
-            16.. => Pipe {
+            16..=20 => Pipe {
                 direction: (rand::gen_range(0.0, 2.0) as i8) * 2 - 1,
-                moving_speed: 3.0,
+                moving_speed: 4.0,
+                ..default_pipe
+            },
+            21.. => Pipe {
+                direction: (rand::gen_range(0.0, 2.0) as i8) * 2 - 1,
+                moving_speed: 6.0,
                 ..default_pipe
             },
         };

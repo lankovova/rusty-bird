@@ -17,15 +17,14 @@
 - [x] Add art background
 - [x] Parallax effect for background
 - [x] Balance text/bg tint colors
+- [x] Tighten gap size in pipes
+- [x] Progressivly increase how hard it is
 
 ### Todo:
 
 - [ ] Fix freeze on first particles spawn
 - [ ] Main menu
 - [ ] Set appropriate window size
-- [ ] Balancing / skill issue
-    - [ ] Tighten gap size in pipes
-    - [ ] Progressivly increase how hard it is. Speed increase perhaps.
 
 ### Long run:
 
